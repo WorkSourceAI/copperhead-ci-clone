@@ -58,9 +58,10 @@ services:
         destination: /index.html
 
 databases:
-  # PostgreSQL Database - NO CHANGES NEEDED
+  # PostgreSQL Database - UPDATED: Replaced legacy 'starter' plan with 'free'
   - name: copperhead-db
     databaseName: copperhead_production
     user: copperhead_user
-    plan: starter
+    plan: free
+    ipAllowList: []  # Required for free tier - allows all IPs
     postgresMajorVersion: 15
