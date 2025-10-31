@@ -66,6 +66,5 @@ services:
 databases:
   # PostgreSQL Database
   - name: copperhead-db
-    # Supported plans: free (ephemeral), standard, pro, plus (depending on account)
-    plan: standard
+    # Plan omitted: Render will provision using current default tier. Set manually after creation if needed.
     postgresMajorVersion: "15"
