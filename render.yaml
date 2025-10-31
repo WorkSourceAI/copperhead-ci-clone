@@ -1,12 +1,14 @@
 # Render Blueprint for Copperhead Consulting Inc
 # PostgreSQL + Static Hosting Configuration
 
+branch: main
 services:
   # Backend API Service (Python)
   - type: web
     name: copperhead-backend
-    env: python
+    runtime: python
     plan: starter
+    autoDeploy: true
     buildCommand: pip install -r requirements.txt
     startCommand: |
       python -m alembic upgrade head
@@ -24,18 +26,19 @@ services:
       - key: SESSION_SECRET
         generateValue: true
       - key: RESEND_API_KEY
-        sync: false  # Set manually in Render dashboard
+        value: ""  # Set manually in dashboard or via Render UI secret
 
   # Frontend Static Site (React/Vite build output)
   - type: web
     name: copperhead-frontend
-    env: static
+    runtime: static
     buildCommand: |
       cd frontend
       yarn install --frozen-lockfile || yarn install
       yarn build
     staticPublishPath: frontend/dist
     pullRequestPreviewsEnabled: false
+    autoDeploy: true
     headers:
       - path: /*
         name: X-Frame-Options
@@ -64,7 +67,5 @@ services:
 databases:
   # PostgreSQL Database
   - name: copperhead-db
-    databaseName: copperhead_production
-    user: copperhead_user
     plan: starter
     postgresMajorVersion: "15"
