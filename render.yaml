@@ -66,5 +66,6 @@ services:
 databases:
   # PostgreSQL Database
   - name: copperhead-db
-    plan: starter
+    # Supported plans: free (ephemeral), standard, pro, plus (depending on account)
+    plan: standard
     postgresMajorVersion: "15"
