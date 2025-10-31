@@ -1,7 +1,6 @@
 # Render Blueprint for Copperhead Consulting Inc
 # PostgreSQL + Static Hosting Configuration
 
-branch: main
 services:
   # Backend API Service (Python)
   - type: web
