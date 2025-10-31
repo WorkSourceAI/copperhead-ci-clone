@@ -33,11 +33,11 @@ services:
   - type: web
     name: copperhead-frontend
     runtime: static
+    rootDir: frontend
     buildCommand: |
-      cd frontend
       yarn install --frozen-lockfile || yarn install
       yarn build
-    staticPublishPath: frontend/dist
+    staticPublishPath: dist
     pullRequestPreviewsEnabled: false
     autoDeploy: true
     headers:
